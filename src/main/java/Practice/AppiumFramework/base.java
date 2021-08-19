@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -19,6 +22,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 public class base {
 	
 	public static AppiumDriverLocalService service;
+	public static AndroidDriver<AndroidElement> driver;
 	
 	public AppiumDriverLocalService startServer()
 	{
@@ -108,9 +112,16 @@ public class base {
 		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
 		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "10");
 		
-        AndroidDriver<AndroidElement> driver = new AndroidDriver<>(service,cap);
+        driver = new AndroidDriver<>(service,cap);
         
         return driver;
+		
+	}
+	
+	public static void getScreenshot(String failed_test_case) throws IOException
+	{
+		File sfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(sfile, new File(System.getProperty("user.dir")+"/"+failed_test_case+".png"));
 		
 	}
 
