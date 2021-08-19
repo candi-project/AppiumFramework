@@ -1,6 +1,7 @@
 package Practice.AppiumFramework;
 
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import PageObjects.CheckOutPage;
@@ -25,10 +26,20 @@ import io.appium.java_client.android.AndroidElement;
 
 public class Ecommerce_tc_4 extends base{
 
+	
+	@BeforeTest
+	public void killAllNodes() throws IOException, InterruptedException
+	{
+
+		Runtime.getRuntime().exec("killall node");
+		Thread.sleep(3000);
+	}
+	
+	
 	@Test  
 	public void ecommerceTest() throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		startServer();
+		service= startServer();
 		
 		AndroidDriver<AndroidElement> driver = capabilities("GeneralStoreApp");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -146,6 +157,7 @@ public class Ecommerce_tc_4 extends base{
 		driver.findElementById("android:id/button1").click();
 		driver.findElementByClassName("android.widget.Button").click();
 		
+		service.stop();
 		
 	}
 	

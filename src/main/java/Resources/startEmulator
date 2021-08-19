@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /Users/candichiu/Library/Android/sdk 
+adb start-server
+emulator @emulator_Pixel
+

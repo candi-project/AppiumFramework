@@ -10,8 +10,10 @@ import io.appium.java_client.android.AndroidElement;
 public class ApiDemo extends base{
     
 	@Test
-	public void ApiDemoTest() throws IOException {
+	public void ApiDemoTest() throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
+		
+		service=startServer();
 		AndroidDriver<AndroidElement> driver = capabilities("ApiDemoApp");
 		
 		/*
@@ -49,7 +51,8 @@ public class ApiDemo extends base{
 		//AndroidUIAutomator syntax:  driver.findElementByAndroidUIAutomator("attribute(\"value\")")
 		
 		//driver.findElementByAndroidUIAutomator("text(\"Views\")").click();;
-
+		service.stop();
+		
 	}
 
 }
