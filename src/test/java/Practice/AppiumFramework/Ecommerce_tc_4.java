@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import PageObjects.CheckOutPage;
 import PageObjects.FormPage;
-import PageObjects.Utilities;
 
 import java.io.IOException;
 

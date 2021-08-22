@@ -9,8 +9,8 @@ import io.appium.java_client.android.AndroidElement;
 
 public class ApiDemo extends base{
     
-	@Test
-	public void ApiDemoTest() throws IOException, InterruptedException {
+	@Test(dataProvider="InputData",dataProviderClass=TestData.class)
+	public void ApiDemoTest(String Input) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 		
 		service=startServer();
@@ -43,7 +43,7 @@ public class ApiDemo extends base{
 		d.WifiSettings.click();
 		
 		//driver.findElementById("android:id/edit").sendKeys("Hello World!");
-		d.editbox.sendKeys("Hello World!");
+		d.editbox.sendKeys(Input);
 		
 		//driver.findElementsByClassName("android.widget.Button").get(1).click();
 		d.buttons.get(1).click();

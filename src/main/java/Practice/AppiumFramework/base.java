@@ -76,7 +76,7 @@ public class base {
 		ProcessBuilder pb = new ProcessBuilder("open", file.toString());
 		Process p = pb.start();
 		int exitCode = p.waitFor();
-	//	Thread.sleep(7000);
+		Thread.sleep(7000);
 	
 	}
 	
@@ -94,7 +94,10 @@ public class base {
 		File app = new File(appdir, (String) p.get(appName));
 		DesiredCapabilities cap = new DesiredCapabilities();
 		
-		String device = (String) p.get("device");
+		//String device = (String) p.get("device");
+		
+		//get device information from mvn command: mvn test -DdeviceName= YOUR DEVICE NAME
+		String device=System.getProperty("deviceName");
 		if(device.contains("emulator"))
 		{  
 			
