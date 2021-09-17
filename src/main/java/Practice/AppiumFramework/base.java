@@ -4,8 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -75,7 +73,7 @@ public class base {
         File file=new File(System.getProperty("user.dir")+"/src/main/java/Resources/startEmulator");
 		ProcessBuilder pb = new ProcessBuilder("open", file.toString());
 		Process p = pb.start();
-		int exitCode = p.waitFor();
+		p.waitFor();
 		Thread.sleep(7000);
 	
 	}
@@ -94,15 +92,16 @@ public class base {
 		File app = new File(appdir, (String) p.get(appName));
 		DesiredCapabilities cap = new DesiredCapabilities();
 		
-		//String device = (String) p.get("device");
+		String device = (String) p.get("device");
 		
 		//get device information from mvn command: mvn test -DdeviceName= YOUR DEVICE NAME
-		String device=System.getProperty("deviceName");
+		//String device=System.getProperty("deviceName");
 		if(device.contains("emulator"))
 		{  
 			
 			
 			startEmulator();
+			Thread.sleep(30000);
 			/*
 			cap.setCapability("avd", device);
 			Thread.sleep(10000);
@@ -113,7 +112,7 @@ public class base {
 		//cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
 		cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "10");
+		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "20");
 		
         driver = new AndroidDriver<>(service,cap);
         

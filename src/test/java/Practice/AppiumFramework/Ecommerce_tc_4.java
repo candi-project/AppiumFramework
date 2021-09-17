@@ -1,6 +1,7 @@
 package Practice.AppiumFramework;
 
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -34,6 +35,10 @@ public class Ecommerce_tc_4 extends base{
 		Thread.sleep(3000);
 	}
 	
+	@AfterTest
+	public void stopEmulator() throws IOException {
+		Runtime.getRuntime().exec(new String[]{"bash", "-l", "-c", "adb emu kill"});
+	}
 	
 	@Test  
 	public void ecommerceTest() throws IOException, InterruptedException {
