@@ -17,6 +17,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
+//test
 public class base {
 	
 	public static AppiumDriverLocalService service;
